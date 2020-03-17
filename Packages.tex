@@ -1,0 +1,284 @@
+\documentclass[notitlepage, 11pt, a4paper,ngerman]{article}
+\usepackage[margin=1in]{geometry}  % changes the margins on all pages (easy lanscape mode)
+
+%German and foreign characters
+\usepackage[utf8]{inputenc} % utf8 encoding, umlauts...
+\usepackage[T1]{fontenc} % correct searching and copying of umlauts in pdfs
+\usepackage[ngerman]{babel} % document germanization of dates and so on
+
+%Graphics
+\PassOptionsToPackage{dvipsnames}{xcolor}  % needed to get colors working in certain environments
+\usepackage{graphicx} % embed graphics
+\graphicspath{ {images/} } % sets one path for all graphics
+\usepackage{wrapfig}  % used for wrapping text around a figure (alternative to using minipages)
+\PassOptionsToPackage{dvipsnames}{xcolor}  % needed to get colors working in certain environments
+
+%Math
+\usepackage{amsmath} % important math environment
+\usepackage{amsfonts} % mathmatical fonts
+\usepackage{amssymb} % mathmatical symbols
+\usepackage{mathtools} % flexible and nice depiction of math
+\usepackage{nicefrac}  % adds \nicefrac: a/b fraction display
+\usepackage{cancel}  % adds \cancel which adds strikethrough
+\usepackage{bm}  % adds \bm: bold font support for math-symbols, replaces outdated \boldsymbol
+\usepackage{wasysym} % adds all kinds of symbols
+
+%Links
+\usepackage[hidelinks]{hyperref}  % hyperlinks to section or url, hidelinks makes them invisible
+\usepackage{cleveref} % smart automatic referenzing
+\usepackage{url} % smart handling of url links
+
+%Tikz
+\usepackage{tikz} % Tikz ist kein Zeichenprogramm: create vectorgraphics within LaTeX
+\usepackage{tikz-cd} % commutative diagrams in tikz
+\usetikzlibrary{calc} % allows coordiantes to be calculated
+% tikzlibraries add sympols or pathstyles
+
+% Header and Footer:
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\subsectionmark}[1]{#1}
+\lhead{\nouppercase{\rightmark}} \chead{} \rhead{\thepage} 
+\lfoot{} \cfoot{\thepage} \rfoot{}
+\renewcommand{\headrulewidth}{0.2pt}
+
+%Other
+\usepackage[shortlabels]{enumitem} % second option in enumerate (a), 1.)...
+\usepackage{multirow} % muli
+\usepackage{booktabs} % adds \toprule, \midrule, \cmidrule, \bottomrule for nicer tables
+\usepackage{tcolorbox} % colored boxes
+\usepackage{placeins} % adds \FloatBarrier command to stop floats from floating away
+\usepackage{tocloft} % allows manipulation of table of contents
+
+\usepackage{lipsum} % adds exampletext to test Lorem Ipsum...
+
+\hbadness=99999  % removes unnecessary hbadness warnings
+
+% coloring for working at night
+%\pagecolor{darkgray}
+%\color{white}
+
+\begin{document}
+
+\title{
+	{\Huge Pakete Erklärt}\\[1em]
+	{\huge Untertitel}\\[1em]
+	{\Large Unteruntertitel}}
+\author{Author Name}
+\date{ \today}
+\maketitle
+
+\thispagestyle{empty}
+\pagebreak
+\pagenumbering{Roman}
+\tableofcontents \thispagestyle{fancy}
+\listoffigures \thispagestyle{fancy}
+\listoftables \thispagestyle{fancy}
+\pagebreak
+
+\pagenumbering{arabic}
+
+\newpage
+
+\section{Generelles}
+
+\verb|\documentclass[titlepage, 11pt, a4paper,ngerman]{article}|\\
+Setzt die Schriftgröße, das Papierformat und die Dokumentklasse!\\[10pt]
+\verb|\usepackage[utf8]{inputenc} % utf8 encoding, umlauts...|\\
+\verb|\usepackage[T1]{fontenc}| \texttt{\% correct searching and copying of \ um\-lauts in pdfs}\\
+\verb|\usepackage[ngerman]{babel}| \texttt{\% document germanization of dates and so on}\\[10pt]
+Umlaut Support: ä (versuche das Dokument danach zu durchsuchen oder die Stelle zu kopieren.)\\
+Probiere mal bei babel statt ngerman (new german) greek anzugeben.\\[10pt]
+Mathe: $ x^2 - \frac{5}{3}x = 7 $ \label{test}
+\begin{equation}
+\textrm{Gleichungen:} \quad a^2 + b^2 = c^2
+\label{Pythagoras}
+\end{equation}
+\begin{equation}
+c = \sqrt{a^2 + b^2}
+\label{2}
+\end{equation}
+
+\section{Grafiken}
+
+\subsection{graphicx}
+
+\verb|\usepackage{graphicx} % embed graphics|\\
+\verb|\graphicspath{ {images/} } % sets one path for all graphics|\\
+
+\begin{figure}[ht] % here and top aligned
+	\centering
+	\includegraphics[width=.5\linewidth]{image.png}
+	\caption[Bildunterschrift für Verzeichnis]{Bildunterschrift von Grafik 1}
+	\label{Bild1}
+\end{figure}
+
+\newpage
+
+\subsection{wrapfigure}
+
+\noindent
+\verb|\usepackage{wrapfig}| \texttt{\% used for wrapping text around a figure\\ (alternative to using minipages)}\\
+
+\noindent
+Beispieltext als Platzhalter:\\
+\begin{wrapfigure}{r}{.25\textwidth}
+	\centering
+	\includegraphics[width=.25\textwidth]{image.png}
+	\caption[Bildunterschrift im Verzeichnis 2]{Bildunterschrift in Wrapfigure}	
+\end{wrapfigure}
+\lipsum[1]
+\begin{wrapfigure}{l}{.5\textwidth}
+	\centering
+	\includegraphics[width=.25\textwidth]{image.png}
+	\caption[Bildunterschrift im Verzeichnis 2]{Bildunterschrift in Wrapfigure}	
+\end{wrapfigure}
+\lipsum[2]
+
+\section{Mathematik}
+
+\verb|\usepackage{amsmath} % important math environment|\\
+\verb|\usepackage{amsfonts} % mathmatical fonts|\\
+\verb|\usepackage{amssymb} % mathmatical symbols|\\
+\verb|\usepackage{mathtools} % flexible and nice depiction of math|\\[10pt]
+Viele Grundlegende Sachen die mit der Mathe Umgebung zu tun haben. Symbole, Umgebungen und generell viel Automatisierung und Flexibilität.
+
+\subsection{Nicefrac}
+
+\verb|\usepackage{nicefrac}  % adds \nicefrac: a/b fraction display|\\[10pt]
+\begin{equation}
+\textrm{Normaler Bruch: } \frac{a}{b} \qquad \textrm{Nicefrac: } \nicefrac{a}{b}
+\end{equation}
+
+\subsection{Cancel}
+
+\verb|\usepackage{cancel}  % adds \cancel which adds strikethrough|\\[10pt]
+Kürzen in Brüchen (oder anderes Durchstreichen)
+\begin{equation}
+\frac{\cancel{(a - 5x)} \cdot \sum_{i=0}^{N} c_i}{7 \cancel{\cdot (a - 5x)}}
+\end{equation}
+
+\subsection{bm}
+
+\verb|\usepackage{bm}| \texttt{\% adds} \verb|\bm:| \texttt{bold font support for math-symbols, replaces outdated} \verb|\boldsymbol|\\[10pt]
+Fette Schrift in Mathe Umgebung $ \bm{[-1;1]} , [-1;1] \ ; \ \bm{\sum_{i=0}^{N}}, \sum_{i=0}^{N}$
+
+\subsection{wasysym}
+
+\verb|\usepackage{wasysym}| \texttt{ \% adds all kinds of symbols}\\[10pt]
+\begin{equation}
+\twonotes, \leftmoon, \venus, \uranus, \scorpio, \APLlog
+\end{equation}
+
+\section{Referenzen}
+
+\subsection{Hyperref}
+
+Fügt die Möglichkeit Hinzu vom Inhaltsverzeichnis zur Seite zu Springen.\\[10pt]
+\verb|\usepackage[hidelinks]{hyperref}| \texttt{ \% hyperlinks to section or url, hidelinks makes them invisible}\\[10pt]
+\href{https://de.wikipedia.org/wiki/LaTeX}{\LaTeX \ Wikipedia Seite}\\
+\href{mailto:test@example.net}{Mail an Test}
+
+\subsection{Normales Referieren}
+
+Wie man in Gleichung \ref{Pythagoras} sieht:
+
+\subsection{Cleverref}
+
+\verb|\usepackage{cleveref}|\\[10pt]
+Betrachte die \crefrange{Pythagoras}{2}.\\ Auch \cref{Bild1} ist sehr wichtig.
+
+\subsection{Url}
+
+\verb|\usepackage{url}|\\[10pt]
+\url{https://de.wikipedia.org/wiki/LaTeX}
+
+
+\section{Verschiedenes}
+
+\subsection{Tikz}
+
+\verb|\usepackage{tikz}| \texttt{ \% Tikz ist kein Zeichenprogramm: create vectorgraphics within LaTeX}\\
+\verb|\usepackage{tikz-cd}| \texttt{ \% commutative diagrams in tikz}\\
+\verb|\usetikzlibrary{calc}| \texttt{ \% allows coordiantes to be calculated}\\[10pt]
+
+Koordinaten-basiertes zeichnen von Vektorgrafiken. Einfach mal Googeln damit kann man wirklich alles Zeichnen: \href{http://www.texample.net/tikz/examples/}{Tikz Example Homepage}
+\begin{center}
+	\begin{tikzpicture}[scale=0.5]
+	\draw[draw=none, fill=NavyBlue] (0,0) -- (-45:3) arc(-45:225:3) -- cycle;
+	\draw[draw=none, fill=Goldenrod!90!Brown] (0,0) -- (-65:3) arc(-65:-135:3) -- cycle;
+	\draw[draw=none, fill=RawSienna!70!black] (0,0) -- (-45:3) arc(-45:-65:3) -- cycle;
+	\coordinate (b) at (5,0);
+	\coordinate (a) at ($ (b) + (0,1.5) $);
+	\coordinate (c) at ($ (b) - (0,1.5) $);
+	\foreach \p\c\t in {a/NavyBlue/Sky, b/Goldenrod!90!Brown/Sunny side of pyramid, c/RawSienna!70!black/Shady side of pyramid}
+	\draw[draw=none, fill=\c] (\p) circle(.5cm) node[right=.8cm] {\t};
+	\end{tikzpicture}
+\end{center}
+
+\subsection{enumitem}
+
+\verb|\usepackage[shortlabels]{enumitem}| \text{ \% second option in enumerate (a), 1.)...}\\[10pt]
+Hier im Beispiel mit (a) wird dann (b) und (c) automatisch generiert.
+
+\begin{enumerate}[(a)]
+	\item Zählt automatisch weiter
+	\item Zahlen wie 1. oder 1) oder (1.)
+	\item und auch Buchstaben (a) und a.
+\end{enumerate}
+Beispiel 2:
+\begin{enumerate}[(a)]
+	\item Aufzählung 1 Item a
+	\item Aufzählung 1 Item b
+	\begin{enumerate}[1.)]
+		\item Aufzählung 2 Item 1
+		\item Aufzählung 2 Item 2
+	\end{enumerate}
+	\item Aufzählung 1 Item c
+\end{enumerate}
+
+\subsection{booktabs}
+
+\verb|\usepackage{booktabs}| \texttt{ \% adds} \verb|\toprule|, \verb|\midrule|, \verb|\cmidrule|, \verb|\bottomrule| \texttt{for nicer tables}\\
+\verb|\usepackage{multirow} % muli|\\[10pt]
+Schönere Tabellen mit Horizontalen Linien. Hier im Beispiel auch Multirow und Multicolumn.
+
+\begin{table}[h]\centering
+	\begin{tabular}{lcccc}
+		\toprule 
+		\multirow{2}{*}{Sample} & \multicolumn{2}{c}{I} & \multicolumn{2}{c}{II} \\
+		\cmidrule(l){2-3} \cmidrule(l){4-5}
+		& A & B & C & D \\
+		\midrule
+		S1 & 5 & 8 & 12 & 2 \\
+		S2 & 6 & 9 & 2 & 6 \\
+		S3 & 7 & 9 & 5 & 8 \\
+		S4 & 8 & 9 & 8 & 2 \\
+		\bottomrule
+		\end{tabular}
+		\caption[Tabellenverzeichnis Eintrag]{Tabellenunterschrift}
+\end{table}
+
+\FloatBarrier
+
+\subsection{tcolorbox}
+
+\verb|\usepackage{tcolorbox} % colored boxes|\\[10pt]
+Boxen zum Umrahmen von allem. Für Mathe-Umgebungen muss man \verb|\tcboxmath| benutzen.
+
+\begin{tcolorbox}[colframe=red!75!black, title=Überschrift]
+	\centering
+	Beispieltext
+\end{tcolorbox}
+
+\subsection{placeins}
+
+\verb|\usepackage{placeins} % adds \FloatBarrier|\\[10pt]
+Um Schwebe-Objekte (Floats) wie Bilder und Tabellen an einer stelle zu fixieren an der sie nicht bleiben wollen kann man im äußersten Notfall den Befehl: \verb|\FloatBarrier| verwenden. Hier können diese nicht vorbeischweben.\par
+Zuerst sollte man allerdings die option \verb|[ht]| für here und top aligned ausprobieren.
+
+
+
+
+\end{document}
