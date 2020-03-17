@@ -12,5 +12,7 @@
 *.dvi
 *.blg
 *.gz
+*.lof
+*.lot
 *.dropbox
 .DS_Store

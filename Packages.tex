@@ -1,5 +1,5 @@
-\documentclass[notitlepage, 11pt, a4paper,ngerman]{article}
-\usepackage[margin=1in]{geometry}  % changes the margins on all pages (easy lanscape mode)
+\documentclass[titlepage, 11pt, a4paper,ngerman]{article}
+
 
 %German and foreign characters
 \usepackage[utf8]{inputenc} % utf8 encoding, umlauts...
@@ -25,8 +25,10 @@
 
 %Links
 \usepackage[hidelinks]{hyperref}  % hyperlinks to section or url, hidelinks makes them invisible
-\usepackage{cleveref} % smart automatic referenzing
+\usepackage{cleveref} % smart automatic referenzing (import after hyperref!)
 \usepackage{url} % smart handling of url links
+
+\usepackage[margin=1in]{geometry}  % changes the margins on all pages (easy lanscape mode) (import after hyperref!)
 
 %Tikz
 \usepackage{tikz} % Tikz ist kein Zeichenprogramm: create vectorgraphics within LaTeX
@@ -37,11 +39,11 @@
 % Header and Footer:
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\setlength{\headheight}{0.7cm}
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
-\renewcommand{\subsectionmark}[1]{#1}
+\renewcommand{\subsectionmark}[1]{}
 \lhead{\nouppercase{\rightmark}} \chead{} \rhead{\thepage} 
 \lfoot{} \cfoot{\thepage} \rfoot{}
-\renewcommand{\headrulewidth}{0.2pt}
 
 %Other
 \usepackage[shortlabels]{enumitem} % second option in enumerate (a), 1.)...
@@ -64,7 +66,8 @@
 \title{
 	{\Huge Pakete Erklärt}\\[1em]
 	{\huge Untertitel}\\[1em]
-	{\Large Unteruntertitel}}
+	{\Large Unteruntertitel}
+	\thispagestyle{empty}}
 \author{Author Name}
 \date{ \today}
 \maketitle
@@ -110,7 +113,7 @@ c = \sqrt{a^2 + b^2}
 \begin{figure}[ht] % here and top aligned
 	\centering
 	\includegraphics[width=.5\linewidth]{image.png}
-	\caption[Bildunterschrift für Verzeichnis]{Bildunterschrift von Grafik 1}
+	\caption[Bildunterschrift im Verzeichnis]{Bildunterschrift von Grafik 1}
 	\label{Bild1}
 \end{figure}
 
@@ -132,7 +135,7 @@ Beispieltext als Platzhalter:\\
 \begin{wrapfigure}{l}{.5\textwidth}
 	\centering
 	\includegraphics[width=.25\textwidth]{image.png}
-	\caption[Bildunterschrift im Verzeichnis 2]{Bildunterschrift in Wrapfigure}	
+	\caption[Bildunterschrift im Verzeichnis 3]{Bildunterschrift in Wrapfigure 2}	
 \end{wrapfigure}
 \lipsum[2]
 
@@ -162,7 +165,7 @@ Kürzen in Brüchen (oder anderes Durchstreichen)
 \subsection{bm}
 
 \verb|\usepackage{bm}| \texttt{\% adds} \verb|\bm:| \texttt{bold font support for math-symbols, replaces outdated} \verb|\boldsymbol|\\[10pt]
-Fette Schrift in Mathe Umgebung $ \bm{[-1;1]} , [-1;1] \ ; \ \bm{\sum_{i=0}^{N}}, \sum_{i=0}^{N}$
+Fette Schrift in Mathe Umgebung $ \bm{[-1;1]} , [-1;1] \ ; \ \bm{\sum}_{\bm{i=0}}^{\bm{N}}, \sum_{i=0}^{N}$
 
 \subsection{wasysym}
 
@@ -176,7 +179,7 @@ Fette Schrift in Mathe Umgebung $ \bm{[-1;1]} , [-1;1] \ ; \ \bm{\sum_{i=0}^{N}}
 \subsection{Hyperref}
 
 Fügt die Möglichkeit Hinzu vom Inhaltsverzeichnis zur Seite zu Springen.\\[10pt]
-\verb|\usepackage[hidelinks]{hyperref}| \texttt{ \% hyperlinks to section or url, hidelinks makes them invisible}\\[10pt]
+\verb|\usepackage[hidelinks]{hyperref}| \texttt{ \% hyperlinks to section or url, hidelinks \\ makes them invisible}\\[10pt]
 \href{https://de.wikipedia.org/wiki/LaTeX}{\LaTeX \ Wikipedia Seite}\\
 \href{mailto:test@example.net}{Mail an Test}
 
@@ -199,7 +202,7 @@ Betrachte die \crefrange{Pythagoras}{2}.\\ Auch \cref{Bild1} ist sehr wichtig.
 
 \subsection{Tikz}
 
-\verb|\usepackage{tikz}| \texttt{ \% Tikz ist kein Zeichenprogramm: create vectorgraphics within LaTeX}\\
+\verb|\usepackage{tikz}| \texttt{ \% Tikz ist kein Zeichenprogramm: create vectorgraphics within \\ LaTeX}\\
 \verb|\usepackage{tikz-cd}| \texttt{ \% commutative diagrams in tikz}\\
 \verb|\usetikzlibrary{calc}| \texttt{ \% allows coordiantes to be calculated}\\[10pt]
 
@@ -278,7 +281,8 @@ Boxen zum Umrahmen von allem. Für Mathe-Umgebungen muss man \verb|\tcboxmath| b
 Um Schwebe-Objekte (Floats) wie Bilder und Tabellen an einer stelle zu fixieren an der sie nicht bleiben wollen kann man im äußersten Notfall den Befehl: \verb|\FloatBarrier| verwenden. Hier können diese nicht vorbeischweben.\par
 Zuerst sollte man allerdings die option \verb|[ht]| für here und top aligned ausprobieren.
 
-
-
+\bibliographystyle{plain}
+\bibliography{literature}
+\addcontentsline{toc}{section}{Literatur}
 
 \end{document}
