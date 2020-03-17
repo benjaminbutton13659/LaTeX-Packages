@@ -281,6 +281,16 @@ Boxen zum Umrahmen von allem. Für Mathe-Umgebungen muss man \verb|\tcboxmath| b
 Um Schwebe-Objekte (Floats) wie Bilder und Tabellen an einer stelle zu fixieren an der sie nicht bleiben wollen kann man im äußersten Notfall den Befehl: \verb|\FloatBarrier| verwenden. Hier können diese nicht vorbeischweben.\par
 Zuerst sollte man allerdings die option \verb|[ht]| für here und top aligned ausprobieren.
 
+\section{Literaturverzeichnis}
+
+Man kann Quellen einfach zitieren und das Literaturverzeichnis wird automatisch angelegt.\\[10pt]
+Um \LaTeX zu lernen empfehlen sich das Buch Latex-Begleiter \cite{LatexBegleiter} und die Wiki Seite \cite{LatexWiki}. Außerdem interessant ist die Seite zu BibTeX \cite{BibtexWiki}.\\[10pt]
+AM leichtesten geht das so:\\[10pt]
+\verb|\bibliographystyle{plain}|\\
+\verb|\bibliography{literature}|\\
+\verb|\addcontentsline{toc}{section}{Literatur}|\\[10pt]
+Man 
+
 \bibliographystyle{plain}
 \bibliography{literature}
 \addcontentsline{toc}{section}{Literatur}

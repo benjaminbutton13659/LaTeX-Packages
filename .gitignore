@@ -14,5 +14,6 @@
 *.gz
 *.lof
 *.lot
+*.bib.bak
 *.dropbox
 .DS_Store
